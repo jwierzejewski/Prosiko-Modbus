@@ -5,8 +5,8 @@ using MBClient.ModbusMessages;
 using MBClient.ModbusMessages.Requests;
 using MBClient.ModbusMessages.Responses;
 
-//ModbusClient client = new ModbusTCPClient("localhost",502);
-ModbusClient client = new ModbusRSClient("COM1", 1);
+ModbusClient client = new ModbusTCPClient("localhost",502);
+//ModbusClient client = new ModbusRSClient("COM1", 1);
 
 float[,] brightness = Bitmaps.GetBrightness("D:\\jacek\\jacek\\Prosiko\\np.png", 10,10);
 
@@ -23,6 +23,9 @@ else
     ModbusWSCResponse modbusWSCResponse = (ModbusWSCResponse)response;
     Console.WriteLine($"Write Single Coil Successful OutputValue:{modbusWSCResponse.OutputValue}");
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey();
+
 
 response = client.QA(new ModbusRCRequest(0, 1));
 if (response.Function >= 0x80)
@@ -40,7 +43,8 @@ else
     }
     Console.WriteLine();
 }
-
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
 response = client.QA(new ModbusWSRRequest(0, 3));
 if (response.Function >= 0x80)
@@ -53,6 +57,8 @@ else
     ModbusWSRResponse modbusWSRResponse = (ModbusWSRResponse)response;
     Console.WriteLine($"Write Single Register Successful RegisterValue:{modbusWSRResponse.RegisterValue}");
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
 
 response = client.QA(new ModbusRHRRequest(0, 3));
@@ -71,6 +77,8 @@ else
     }
     Console.WriteLine();
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
 
 response = client.QA(new ModbusRIRRequest(0, 5));
@@ -89,6 +97,8 @@ else
     }
     Console.WriteLine();
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
 
 response = client.QA(new ModbusRDIRequest(0, 5));
@@ -107,6 +117,8 @@ else
     }
     Console.WriteLine();
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
 byte[] coils = {77,1};
 response = client.QA(new ModbusWMCRequest(coils, 27));
@@ -120,6 +132,8 @@ else
     ModbusWMCResponse modbusWMCResponse = (ModbusWMCResponse)response;
     Console.WriteLine($"Write Multiple Coils Successful QuantityOfOutputs:{modbusWMCResponse.QuantityOfOutputs}");
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
 ushort[] registersValues = { 255, 255, 255 };
 response = client.QA(new ModbusWMRRequest(registersValues, 0));
@@ -133,8 +147,9 @@ else
     ModbusWMRResponse modbusWMRResponse = (ModbusWMRResponse)response;
     Console.WriteLine($"Write Multiple Registers Successful QuantityOfRegisters:{modbusWMRResponse.QuantityOfRegisters}");
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
-/*
 response = client.QA(new ModbusRWMRRequest(3,6,registersValues,14));
 if (response.Function >= 0x80)
 {
@@ -150,8 +165,9 @@ else
         Console.Write($" {i}:{modbusRWMRResponse.ReadRegistersValue[i]}");
     }
     Console.WriteLine();
-}*/
-
+}
+Console.WriteLine("Press any key...");
+Console.ReadKey();
 
 
 for (int i = 0; i < 10; i++)

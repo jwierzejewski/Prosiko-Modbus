@@ -19,10 +19,6 @@ namespace MBClient.ModbusMessages.Requests
             {
                 Data.FillTwoBytes(10 + 2 * i, valuesToWrite[i]);
             }
-            for (int i = 0;i<Data.Length; i++)
-            {
-                Console.WriteLine("{0} {1:x2}",i, Data[i]);
-            }
         }
     }
 }
